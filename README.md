@@ -1,0 +1,2 @@
+# simulacionInversion
+Simula inversión
