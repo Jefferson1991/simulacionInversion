@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Resultado de la Simulación</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"  rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+  <h2 class="text-center mb-4">Resultado de la Simulación</h2>
+
+  <!-- Resultados calculados -->
+  <form th:action="@{/guardar}" method="post" th:object="${resultado}" class="border p-4 rounded bg-light shadow-sm">
+
+    <h5>Confirmación de Simulación</h5>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Nombres:</label>
+        <input type="text" th:field="*{nombres}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Cédula:</label>
+        <input type="text" th:field="*{cedula}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Email:</label>
+        <input type="email" th:field="*{email}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Celular:</label>
+        <input type="text" th:field="*{celular}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Capital Inicial:</label>
+        <input type="number" th:field="*{capitalInicial}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Número de Periodos:</label>
+        <input type="number" th:field="*{numeroPeriodos}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Tiempo en Años:</label>
+        <input type="number" th:field="*{tiempoAnios}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Tasa de Interés:</label>
+        <input type="text" th:value="${#numbers.formatDecimal(resultado.tasaInteres * 100, 2, 0)} + '%'" class="form-control" readonly />
+        <input type="hidden" th:field="*{tasaInteres}" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Monto Final:</label>
+        <input type="text"
+               th:value="${#numbers.formatDecimal(resultado.montoFinal, 2, 2)}"
+               class="form-control"
+               readonly />
+        <input type="hidden" th:field="*{montoFinal}" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Interés Ganado:</label>
+        <input type="text"
+               th:value="${#numbers.formatDecimal(resultado.interesGanado, 2, 2)}"
+               class="form-control"
+               readonly />
+        <input type="hidden" th:field="*{interesGanado}" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Categoría:</label>
+        <input type="text" th:field="*{categoria}" class="form-control" readonly />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Fecha de Simulación:</label>
+        <input type="text" th:field="*{fechaSimulacion}" class="form-control" readonly />
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button type="submit" class="btn btn-success">Guardar Simulación</button>
+      <a href="/" class="btn btn-secondary ms-2">Volver al Formulario</a>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
